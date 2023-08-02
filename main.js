@@ -1,37 +1,40 @@
 
 
-let comprar = confirm("¿Deseas terminar tu compra?")
+const producto = function (tipo, nombre, precio, stock){
+  this.tipo = tipo
+  this.nombre = nombre
+  this.precio = precio
+  this.stock = stock
+} 
 
-function solicitarNombre (){
-	let nombreIngresado = prompt ("Ingresa tu nombre")
-}
-solicitarNombre()
+let producto1 = new producto("Guarnición", "Arroz a la jardinera", 75, 20);
+let producto2 = new producto("Guarnición", "Frijoles refritos", 75, 15);
+let producto3 = new producto("Guarnición", "Papas adobadas", 75, 10);
+let producto4 = new producto("Guiso", "Tinga de pollo", 90, 15);
+let producto5 = new producto("Guiso", "Bistec a la mexicana", 90, 10);
+let producto6 = new producto("Guiso", "Fajitas de pollo", 90, 20);
+let producto7 = new producto("Guiso", "Bistec encacahuatado", 90, 25);
+let producto8 = new producto("Vegetariano", "Guisado de garbanzo", 75, 10);
+let producto9 = new producto("Vegetariano", "Suflé de verduras", 75, 15);
+let producto10 = new producto("Vegetariano", "Soya adobada", 75, 20);
 
-function solicitarTelefono (){
-	let telefonoIngresado = parseInt (prompt("Ingresa tu número de contacto"))
-}
-solicitarTelefono()
+let menu = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10]
 
-function solicitarCorreo (){
-	let correoIngresado = prompt ("Ingresa tu correo electrónico")
-}
-solicitarCorreo()
+function buscarProducto (){
+  let productoBuscado = prompt("Buscar").trim().toUpperCase()
+  let resultado = menu.filter((producto) => producto.nombre.toUpperCase().includes(productoBuscado))
 
-    alert("Tu monto a pagar es de $500")
-let montoAPagar = 500
-let pagoCliente = parseInt(prompt("Ingresa la cantidad a pagar"))
-if(pagoCliente >= montoAPagar){
-    alert("Gracias por tu compra")
-}else if(pagoCliente < 200){
-    console.error("No es posible realizar tu compra")
-}else if(pagoCliente > 200 && pagoCliente < 500){
-    console.error("Tu compra no puede ser realizada")
+if(resultado.length > 0){
+	console.table(resultado)
 }else{
-    console.error("Error, por favor ingresa un número")
-}
+	alert("No se encontró coincidencia para " + productoBuscado)
 
-let terminar = "si";
-do{
-	terminar = prompt ("Contesta con un SI para terminar");
-	console.log(terminar);
-}while(terminar === "si");
+}}
+
+buscarProducto ()
+
+
+/* Agregar después
+let boton = document.getElementById("boton")
+boton.addEventListener("click", productoBuscado)
+ */
